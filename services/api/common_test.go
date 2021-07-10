@@ -6,7 +6,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/wbrush/go-template-service/configuration"
+	"github.com/wbrush/healthjoy_test/configuration"
 	"net/http"
 	"strings"
 	"testing"

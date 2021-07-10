@@ -1,13 +1,9 @@
 package api
 
 import (
-	"encoding/json"
 	"net/http"
-	"strconv"
 
-	"github.com/gorilla/mux"
 	"github.com/sirupsen/logrus"
-	"github.com/wbrush/go-template-service/datamodels"
 )
 
 // swagger:operation POST /api/v1/copy_repo repo CopyFile

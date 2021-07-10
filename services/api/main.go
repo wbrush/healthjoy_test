@@ -3,14 +3,14 @@ package api
 import (
 	"context"
 	"fmt"
+	"net/http"
+	"strings"
+
 	"github.com/gorilla/mux"
 	"github.com/rs/cors"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/negroni"
-	"github.com/wbrush/go-template-service/configuration"
-	"github.com/wbrush/go-template-service/dao"
-	"net/http"
-	"strings"
+	"github.com/wbrush/healthjoy_test/configuration"
 )
 
 const DefaultServicePort = "8080"

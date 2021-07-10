@@ -2,9 +2,10 @@ package daemons
 
 import (
 	"context"
-	"github.com/wbrush/go-template-service/configuration"
 	"log"
 	"time"
+
+	"github.com/wbrush/healthjoy_test/configuration"
 )
 
 type ExampleTicker struct {

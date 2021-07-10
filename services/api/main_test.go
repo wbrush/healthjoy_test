@@ -7,7 +7,7 @@ import (
 	"testing"
 
 	"github.com/gorilla/mux"
-	"github.com/wbrush/go-template-service/configuration"
+	"github.com/wbrush/healthjoy_test/configuration"
 )
 
 func TestNewRouter(t *testing.T) {

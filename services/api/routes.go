@@ -2,7 +2,7 @@ package api
 
 import (
 	"github.com/urfave/negroni"
-	"github.com/wbrush/go-template-service/configuration"
+	"github.com/wbrush/healthjoy_test/configuration"
 )
 
 const (

@@ -13,9 +13,9 @@ import (
 
 	"github.com/urfave/negroni"
 
-]	"github.com/wbrush/go-template-service/configuration"
-	"github.com/wbrush/go-template-service/dao/mock_dao"
-	"github.com/wbrush/go-template-service/models"
+]	"github.com/wbrush/healthjoy_test/configuration"
+	"github.com/wbrush/healthjoy_test/dao/mock_dao"
+	"github.com/wbrush/healthjoy_test/models"
 	"github.com/golang/mock/gomock"
 )
 

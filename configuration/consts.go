@@ -7,5 +7,5 @@ const (
 	APIBasePath = "/api"
 	APIVersion  = "/v1"
 
-	ServiceName = "go-template-service"
+	ServiceName = "healthjoy_test"
 )

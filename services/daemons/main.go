@@ -3,8 +3,9 @@ package daemons
 import (
 	"context"
 	"fmt"
+
 	"github.com/sirupsen/logrus"
-	"github.com/wbrush/go-template-service/configuration"
+	"github.com/wbrush/healthjoy_test/configuration"
 )
 
 type Daemons struct {
