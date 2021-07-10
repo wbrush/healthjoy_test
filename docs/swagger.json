@@ -1,0 +1,253 @@
+{
+  "consumes": [
+    "application/vnd.api+json",
+    "application/json"
+  ],
+  "produces": [
+    "application/vnd.api+json",
+    "application/json"
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "the purpose of this service is to provide a template for Go-based\nmicroservice development. This can be used to start development on\na new service or as an example of Optii accepted best practices for\ndeveloping Go-based microservices",
+    "title": "Template Service for Go-based Development",
+    "termsOfService": "there are no TOS at this moment, use at your own risk we take no responsibility",
+    "version": "0.0.1"
+  },
+  "host": "localhost",
+  "basePath": "/api",
+  "paths": {
+    "/info": {
+      "get": {
+        "description": "returns memory stats, cpu stats, and other information useful in debugging problems in deployed service.",
+        "produces": [
+          "application/json",
+          "application/text"
+        ],
+        "tags": [
+          "basicCommands"
+        ],
+        "summary": "Get basic service information to aid in debugging.",
+        "operationId": "basicInfo",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "standard {Accept} header values",
+            "name": "Accept",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/BasicInfoStruct"
+            }
+          }
+        }
+      }
+    },
+    "/ping": {
+      "get": {
+        "description": "returns clean JSON object to check that everything is fine",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "basicCommands"
+        ],
+        "summary": "Get basic service information to aid in debugging.",
+        "operationId": "basicPing",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "standard \"Accept\" header values",
+            "name": "Accept",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK; returns empty page or json structure"
+          }
+        }
+      }
+    },
+    "/template": {
+      "get": {
+        "tags": [
+          "entries"
+        ],
+        "operationId": "listTemplates"
+      },
+      "post": {
+        "description": "returns new Template",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "entries"
+        ],
+        "summary": "Create new Template",
+        "operationId": "createTemplate",
+        "parameters": [
+          {
+            "description": "Template object that needs to be added",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GlobalTemplateStruct"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/GlobalTemplateStruct"
+            }
+          }
+        }
+      }
+    },
+    "/template/{id}": {
+      "get": {
+        "description": "returns Template",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "entries"
+        ],
+        "summary": "Get Template by given id",
+        "operationId": "getTemplate",
+        "parameters": [
+          {
+            "type": "number",
+            "description": "Numeric ID of the Template to get",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/GlobalTemplateStruct"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "entries"
+        ],
+        "operationId": "updateTemplate"
+      },
+      "delete": {
+        "description": "Numeric ID of the Template to delete",
+        "tags": [
+          "entries"
+        ],
+        "operationId": "deleteTemplate"
+      }
+    }
+  },
+  "definitions": {
+    "BasicInfoStruct": {
+      "type": "object",
+      "properties": {
+        "alloc_heap_total": {
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "Alloc_heap_total"
+        },
+        "alloc_system_total": {
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "Alloc_system_total"
+        },
+        "build_date": {
+          "type": "string",
+          "x-go-name": "BuiltOn"
+        },
+        "cpus": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Cpus"
+        },
+        "est_max_heap": {
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "Est_max_heap"
+        },
+        "max_stack": {
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "Stack_max"
+        },
+        "num_cgo_calls": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Num_cgo_calls"
+        },
+        "num_go_routines": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Num_go_routines"
+        },
+        "used_stack": {
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "Used_stack"
+        },
+        "version": {
+          "type": "string",
+          "x-go-name": "Version"
+        }
+      },
+      "x-go-name": "JsonValues",
+      "x-go-package": "bitbucket.org/optiisolutions/go-template-service/services/api"
+    }
+  },
+  "securityDefinitions": {
+    "optii_apikey": {
+      "type": "apiKey",
+      "name": "KEY",
+      "in": "header"
+    },
+    "optii_oauth2": {
+      "description": "example",
+      "type": "oauth2",
+      "flow": "accessCode",
+      "authorizationUrl": "https://localhost/oauth2/auth",
+      "tokenUrl": "https://localhost/oauth2/token",
+      "scopes": {
+        "read_scope": "description here",
+        "write_scope": "description here"
+      }
+    }
+  },
+  "security": [
+    {
+      "optii_apikey": []
+    },
+    {
+      "optii_oauth2": []
+    }
+  ]
+}

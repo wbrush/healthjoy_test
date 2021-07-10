@@ -1,0 +1,28 @@
+version: '3.4'
+
+networks:
+  test_pubsub_network:
+    driver: bridge
+
+services:
+  testdb:
+    image: postgres:11.1
+    ports:
+      - "5521:5432"
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: app
+      POSTGRES_USER: app
+      POSTGRES_DB: template_service
+    networks:
+      - test_pubsub_network
+    depends_on:
+      - test-pub-sub-emulator
+
+  test-pub-sub-emulator:
+    image: google/cloud-sdk:latest
+    command: ["gcloud", "beta", "emulators", "pubsub", "start", "--host-port=localhost:8921", "--project=integration_test"]
+    ports:
+      - "8921:8085"
+    networks:
+      - test_pubsub_network
