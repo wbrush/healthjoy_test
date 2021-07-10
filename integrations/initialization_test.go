@@ -3,11 +3,9 @@
 package integrations
 
 import (
-	"bitbucket.org/optiisolutions/go-common/datamodels"
-	"bitbucket.org/optiisolutions/go-common/db"
-	"bitbucket.org/optiisolutions/go-template-service/dao/postgres"
-	tdatamodels "bitbucket.org/optiisolutions/go-template-service/datamodels"
 	"fmt"
+	"github.com/wbrush/go-template-service/dao/postgres"
+	"github.com/wbrush/go-template-service/models"
 	"net/url"
 	"time"
 )

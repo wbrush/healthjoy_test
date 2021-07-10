@@ -3,7 +3,6 @@ package configuration
 import (
 	"os"
 
-	"bitbucket.org/optiisolutions/go-common/config"
 	"github.com/joho/godotenv"
 	"github.com/sirupsen/logrus"
 )
@@ -14,7 +13,7 @@ type (
 		config.DbParams
 		config.GCP
 
-		DbMigrationPath string  `json:"db_migration_path"`
+		DbMigrationPath string `json:"db_migration_path"`
 	}
 )
 

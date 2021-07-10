@@ -4,7 +4,6 @@ import (
 	"net/http"
 	"runtime"
 
-	"bitbucket.org/optiisolutions/go-common/httphelper"
 	"github.com/sirupsen/logrus"
 )
 

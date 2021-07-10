@@ -1,18 +1,13 @@
 package setup
 
 import (
-	"bitbucket.org/optiisolutions/go-common/datamodels"
-	"bitbucket.org/optiisolutions/go-common/db"
-	"bitbucket.org/optiisolutions/go-common/helpers"
-	"bitbucket.org/optiisolutions/go-common/messaging"
-	"bitbucket.org/optiisolutions/go-common/monitoring"
-	"bitbucket.org/optiisolutions/go-template-service/configuration"
-	"bitbucket.org/optiisolutions/go-template-service/dao/postgres"
-	"bitbucket.org/optiisolutions/go-template-service/services/api"
-	"bitbucket.org/optiisolutions/go-template-service/services/subscriber"
 	"context"
 	"fmt"
 	"github.com/sirupsen/logrus"
+	"github.com/wbrush/go-template-service/configuration"
+	"github.com/wbrush/go-template-service/dao/postgres"
+	"github.com/wbrush/go-template-service/services/api"
+	"github.com/wbrush/go-template-service/services/subscriber"
 	"os"
 	"os/signal"
 	"reflect"
@@ -39,26 +34,12 @@ func SetupAndRun(block bool, commit, builtAt, swaggerLoc string) {
 		logrus.Fatalf("Cannot ConfigureLogger: %s", err.Error())
 	}
 
-	// Profiler initialization, best done as early as possible.
-	monitoring.NewMonitor(configuration.ServiceName+"."+string(cfg.ServiceParams.Environment),
-		cfg.ServiceParams.Version,
-		cfg.GCP.ProjectID)
-
-	//tracer := tracing.NewTracer(cfg.GCP.ProjectID, false)
-	//span1 := tracer.StartSpan(tracer.GetTracerCtx(),configuration.ServiceName, "mainline.all")
-	//span2 := tracer.StartSpan(span1.GetSpanCtx(),configuration.ServiceName, "mainline.header")
-	//span1.Span.SetAttributes(label.String("Version", cfg.Version))
-	//span1.Span.SetAttributes(label.String("Environ", cfg.ServiceParams.Environment))
-	//span1.Span.AddEvent(span1.GetSpanCtx(),"Starting", label.String("ServiceName",configuration.ServiceName))
-
 	logrus.Info("------------------------------")
 	logrus.Info("Starting " + configuration.ServiceName)
 	logrus.Info("Version:", cfg.Version, "; Build Date:", cfg.BuiltAt)
 	logrus.Info("------------------------------")
 
 	time.Sleep(2 * time.Millisecond)
-	//span2.Span.End()
-	//span3 := tracer.StartSpan(span1.GetSpanCtx(),configuration.ServiceName, "mainline.api_setup")
 
 	ps, err := messaging.NewGPubSub(cfg.GCP.ProjectID)
 	if err != nil {
@@ -100,9 +81,6 @@ func SetupAndRun(block bool, commit, builtAt, swaggerLoc string) {
 	apiModule := api.NewAPI(cfg, swaggerLoc, dao, ps)
 
 	StartUp(cfg, dao, ps)
-
-	//span3.Span.End()
-	//span1.Span.End()
 
 	RunModules(apiModule, subModule)
 	if block {

@@ -1,9 +1,9 @@
 package setup
 
 import (
-	"bitbucket.org/optiisolutions/go-common/messaging"
-	"bitbucket.org/optiisolutions/go-template-service/configuration"
-	"bitbucket.org/optiisolutions/go-template-service/dao"
+	"github.com/wbrush/go-common/messaging"
+	"github.com/wbrush/go-template-service/configuration"
+	"github.com/wbrush/go-template-service/dao"
 )
 
 func StartUp(cfg *configuration.Config, dao dao.DataAccessObject, ps messaging.PublisherSubscriber) {

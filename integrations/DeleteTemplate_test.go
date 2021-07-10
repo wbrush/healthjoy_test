@@ -3,8 +3,7 @@
 package integrations
 
 import (
-	"bitbucket.org/optiisolutions/go-common/httphelper"
-	"bitbucket.org/optiisolutions/go-template-service/configuration"
+	"github.com/wbrush/go-template-service/configuration"
 	"strconv"
 	"testing"
 )

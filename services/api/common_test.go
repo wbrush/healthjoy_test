@@ -3,11 +3,10 @@
 package api
 
 import (
-	"bitbucket.org/optiisolutions/go-common/helpers"
-	"bitbucket.org/optiisolutions/go-template-service/configuration"
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"github.com/wbrush/go-template-service/configuration"
 	"net/http"
 	"strings"
 	"testing"

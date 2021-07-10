@@ -1,9 +1,8 @@
 package api
 
 import (
-	"bitbucket.org/optiisolutions/go-common/httphelper"
-	"bitbucket.org/optiisolutions/go-template-service/configuration"
 	"github.com/urfave/negroni"
+	"github.com/wbrush/go-template-service/configuration"
 )
 
 const (

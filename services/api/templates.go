@@ -5,14 +5,9 @@ import (
 	"net/http"
 	"strconv"
 
-	cdatamodels "bitbucket.org/optiisolutions/go-common/datamodels"
-	"bitbucket.org/optiisolutions/go-common/db"
-	"bitbucket.org/optiisolutions/go-common/errorhandler"
-	"bitbucket.org/optiisolutions/go-common/helpers"
-	"bitbucket.org/optiisolutions/go-common/httphelper"
-	"bitbucket.org/optiisolutions/go-template-service/datamodels"
 	"github.com/gorilla/mux"
 	"github.com/sirupsen/logrus"
+	"github.com/wbrush/go-template-service/datamodels"
 )
 
 var requestFunc = httphelper.MakeHTTPRequest

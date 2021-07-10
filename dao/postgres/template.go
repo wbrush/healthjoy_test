@@ -7,10 +7,9 @@ import (
 	"net/url"
 	"strings"
 
-	"bitbucket.org/optiisolutions/go-common/db"
-	"bitbucket.org/optiisolutions/go-template-service/datamodels"
 	"github.com/go-pg/pg/v9"
 	"github.com/go-pg/urlstruct"
+	"github.com/wbrush/go-template-service/models"
 )
 
 func (d *PgDAO) CreateTemplate(shardId int64, template *datamodels.Template) (isDuplicate bool, err error) {

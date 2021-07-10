@@ -1,9 +1,8 @@
 package daemons
 
 import (
-	_ "bitbucket.org/optiisolutions/go-common/helpers"
-	"bitbucket.org/optiisolutions/go-template-service/configuration"
 	"context"
+	"github.com/wbrush/go-template-service/configuration"
 	"log"
 	"time"
 )

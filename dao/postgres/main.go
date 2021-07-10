@@ -1,10 +1,9 @@
 package postgres
 
 import (
-	"bitbucket.org/optiisolutions/go-common/db"
-	"bitbucket.org/optiisolutions/go-template-service/configuration"
-	"bitbucket.org/optiisolutions/go-template-service/services/api"
 	"github.com/sirupsen/logrus"
+	"github.com/wbrush/go-template-service/configuration"
+	"github.com/wbrush/go-template-service/services/api"
 	"strconv"
 )
 

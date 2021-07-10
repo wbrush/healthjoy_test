@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"testing"
 
-	"bitbucket.org/optiisolutions/go-template-service/configuration"
 	"github.com/gorilla/mux"
+	"github.com/wbrush/go-template-service/configuration"
 )
 
 func TestNewRouter(t *testing.T) {

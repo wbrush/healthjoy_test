@@ -51,7 +51,7 @@ for more information about generating swagger.json from comments, see:
 	https://www.ribice.ba/swagger-golang/
 */
 import (
-	"bitbucket.org/optiisolutions/go-template-service/setup"
+	"github.com/wbrush/go-template-service/setup"
 )
 
 var (

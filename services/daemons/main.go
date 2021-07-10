@@ -1,11 +1,10 @@
 package daemons
 
 import (
-	"bitbucket.org/optiisolutions/go-common/helpers"
-	"bitbucket.org/optiisolutions/go-template-service/configuration"
 	"context"
 	"fmt"
 	"github.com/sirupsen/logrus"
+	"github.com/wbrush/go-template-service/configuration"
 )
 
 type Daemons struct {

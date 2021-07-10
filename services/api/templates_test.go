@@ -11,14 +11,11 @@ import (
 	"strings"
 	"testing"
 
-	cdatamodels "bitbucket.org/optiisolutions/go-common/datamodels"
-	"bitbucket.org/optiisolutions/go-common/httphelper"
 	"github.com/urfave/negroni"
 
-	"bitbucket.org/optiisolutions/go-common/helpers"
-	"bitbucket.org/optiisolutions/go-template-service/configuration"
-	"bitbucket.org/optiisolutions/go-template-service/dao/mock_dao"
-	"bitbucket.org/optiisolutions/go-template-service/datamodels"
+]	"github.com/wbrush/go-template-service/configuration"
+	"github.com/wbrush/go-template-service/dao/mock_dao"
+	"github.com/wbrush/go-template-service/models"
 	"github.com/golang/mock/gomock"
 )
 

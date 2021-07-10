@@ -3,9 +3,9 @@
 package integrations
 
 import (
-	"bitbucket.org/optiisolutions/go-template-service/setup"
 	"fmt"
 	"github.com/joho/godotenv"
+	"github.com/wbrush/go-template-service/setup"
 	"os"
 	"testing"
 )

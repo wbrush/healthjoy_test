@@ -1,16 +1,14 @@
 package api
 
 import (
-	"bitbucket.org/optiisolutions/go-common/messaging"
-	sw "bitbucket.org/optiisolutions/go-common/ui-swagger"
-	"bitbucket.org/optiisolutions/go-template-service/configuration"
-	"bitbucket.org/optiisolutions/go-template-service/dao"
 	"context"
 	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/rs/cors"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/negroni"
+	"github.com/wbrush/go-template-service/configuration"
+	"github.com/wbrush/go-template-service/dao"
 	"net/http"
 	"strings"
 )

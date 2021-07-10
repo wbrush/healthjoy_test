@@ -1,14 +1,13 @@
 package subscriber
 
 import (
-	"bitbucket.org/optiisolutions/go-common/messaging"
-	"bitbucket.org/optiisolutions/go-template-service/configuration"
-	"bitbucket.org/optiisolutions/go-template-service/dao"
 	"cloud.google.com/go/pubsub"
 	"context"
 	"encoding/json"
 	"errors"
 	"github.com/sirupsen/logrus"
+	"github.com/wbrush/go-template-service/configuration"
+	"github.com/wbrush/go-template-service/dao"
 	"strings"
 )
 
