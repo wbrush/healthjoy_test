@@ -66,7 +66,7 @@ func (api *API) CopyRepo(w http.ResponseWriter, r *http.Request) {
 	// 	return
 	// }
 
-	w.WriteHeader(http.StatusOk)
+	w.WriteHeader(http.StatusOK)
 	logrus.Debug("finished CopyFile")
 	return
 }

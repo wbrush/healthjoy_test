@@ -1,8 +1,6 @@
 package api
 
 import (
-	"context"
-	"fmt"
 	"net/http"
 	"strings"
 
@@ -39,16 +37,13 @@ type (
 
 // NewAPI initializes a new instance of API with needed fields, but doesn't start listening,
 // nor creates the router.
-func NewAPI(cfg *configuration.Config, swaggerPath string, dao dao.DataAccessObject, ps messaging.PublisherSubscriber) *API {
+func NewAPI(cfg *configuration.Config, swaggerPath string) *API {
 	api := &API{
 		config: cfg,
 
-		host:        cfg.ServiceParams.Host,
-		port:        cfg.ServiceParams.Port,
+		host:        cfg.Host,
+		port:        cfg.Port,
 		swaggerPath: swaggerPath,
-
-		dao: dao,
-		ps:  ps,
 	}
 
 	if api.port == "" || len(strings.TrimSpace(api.port)) == 0 {
@@ -58,26 +53,7 @@ func NewAPI(cfg *configuration.Config, swaggerPath string, dao dao.DataAccessObj
 	return api
 }
 
-// GracefulStop shuts down the server without interrupting any
-// active connections.
-func (api *API) GracefulStop(ctx context.Context) error {
-	cont, cancel := context.WithTimeout(ctx, configuration.GracefulStopTimeoutSec)
-	defer cancel()
-	return api.server.Shutdown(cont)
-}
-
-// Title returns the title.
-func (api *API) Title() string {
-	return "HTTP REST API"
-}
-
-// Run starts the http server and binds the handlers.
-func (api *API) Run() {
-	api.initialize()
-	api.startServe()
-}
-
-func (api *API) initialize() {
+func (api *API) Initialize() {
 	api.router = mux.NewRouter()
 
 	wrapper := negroni.New()
@@ -90,15 +66,15 @@ func (api *API) initialize() {
 
 	api.initRoutes(wrapper)
 
-	// attach the swagger routes
-	err := sw.AttachSwaggerUI(api.router,
-		fmt.Sprintf("%s/", configuration.APIBasePath), api.swaggerPath)
-	if err != nil {
-		logrus.Errorf("error attaching the swagger UI: %s ", err.Error())
-	}
+	// // attach the swagger routes
+	// err := sw.AttachSwaggerUI(api.router,
+	// 	fmt.Sprintf("%s/", configuration.APIBasePath), api.swaggerPath)
+	// if err != nil {
+	// 	logrus.Errorf("error attaching the swagger UI: %s ", err.Error())
+	// }
 }
 
-func (api *API) startServe() {
+func (api *API) StartServe() {
 	logrus.Infof("Starting REST Server on port %s...", api.port)
 
 	connAddress := api.host + ":" + api.port

@@ -12,7 +12,8 @@ type (
 		Commit  string
 		BuiltAt string
 
-		// ?
+		Host string
+		Port string
 	}
 )
 
@@ -22,6 +23,7 @@ func InitConfig(commit, builtAt string) *Config {
 	//  load space .env variables first if available
 	filename := "./files/.env"
 	if _, err := os.Stat(filename); err == nil {
+		logrus.Debugf("loading environmental variables")
 		_ = godotenv.Load(filename)
 	}
 

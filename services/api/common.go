@@ -1,6 +1,7 @@
 package api
 
 import (
+	"encoding/json"
 	"net/http"
 	"runtime"
 
@@ -51,7 +52,7 @@ func (api *API) HandleInfo(w http.ResponseWriter, r *http.Request) {
 	runtime.ReadMemStats(&memstat)
 	cfg := api.config
 
-	retValues.Version = cfg.Version
+	retValues.Version = cfg.Commit
 	retValues.BuiltOn = cfg.BuiltAt
 	retValues.Cpus = runtime.NumCPU()
 	retValues.Num_go_routines = runtime.NumGoroutine()
@@ -62,7 +63,7 @@ func (api *API) HandleInfo(w http.ResponseWriter, r *http.Request) {
 	retValues.Used_stack = memstat.StackInuse / 1024
 	retValues.Stack_max = memstat.StackSys / 1024
 
-	w.WriteHeader(http.StatusOk)
+	w.WriteHeader(http.StatusOK)
 	jsonResp, err := json.Marshal(retValues)
 	if err != nil {
 		logrus.Fatalf("Error happened in JSON marshal. Err: %s", err)
@@ -89,6 +90,6 @@ func (api *API) HandleInfo(w http.ResponseWriter, r *http.Request) {
 func (api *API) HandlePing(w http.ResponseWriter, r *http.Request) {
 	logrus.Debugf("HandlePing called")
 
-	w.WriteHeader(http.StatusOk)
+	w.WriteHeader(http.StatusOK)
 	return
 }

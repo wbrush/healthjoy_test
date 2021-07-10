@@ -1,9 +1,9 @@
 package setup
 
 import (
-	"github.com/wbrush/healthjoy_wbrush/configuration"
+	"github.com/wbrush/healthjoy_test/configuration"
 )
 
-func StartUp(cfg *configuration.Config, dao dao.DataAccessObject, ps messaging.PublisherSubscriber) {
+func StartUp(cfg *configuration.Config) {
 	//TODO: do any staff that should be done on startup
 }

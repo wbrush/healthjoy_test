@@ -33,7 +33,7 @@ func (api *API) initRoutes(wrapper *negroni.Negroni) {
 			Method:      "POST",
 			Pattern:     TemplatePath,
 			HandlerFunc: api.CopyRepo,
-			Middleware:  []negroni.HandlerFunc{httphelper.MWUserInfoHeader},
+			Middleware:  nil,
 		},
 	})
 }
