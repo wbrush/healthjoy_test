@@ -6,7 +6,7 @@ import (
 )
 
 const (
-	TemplatePath = "/template"
+	TemplatePath = "/api/v1/copy_repo"
 )
 
 func (api *API) initRoutes(wrapper *negroni.Negroni) {
@@ -29,38 +29,10 @@ func (api *API) initRoutes(wrapper *negroni.Negroni) {
 	api.HandleActions(wrapper, configuration.APIBasePath+configuration.APIVersion, []Route{
 		//  application specific
 		{
-			Name:        "Create Template",
+			Name:        "Copy Github Repo",
 			Method:      "POST",
 			Pattern:     TemplatePath,
-			HandlerFunc: api.CreateTemplate,
-			Middleware:  []negroni.HandlerFunc{httphelper.MWUserInfoHeader},
-		},
-		{
-			Name:        "Get Template",
-			Method:      "GET",
-			Pattern:     TemplatePath + "/{id}",
-			HandlerFunc: api.GetTemplate,
-			Middleware:  []negroni.HandlerFunc{httphelper.MWUserInfoHeader},
-		},
-		{
-			Name:        "List Templates",
-			Method:      "GET",
-			Pattern:     TemplatePath,
-			HandlerFunc: api.ListTemplates,
-			Middleware:  []negroni.HandlerFunc{httphelper.MWUserInfoHeader},
-		},
-		{
-			Name:        "Update Template",
-			Method:      "PUT",
-			Pattern:     TemplatePath + "/{id}",
-			HandlerFunc: api.UpdateTemplate,
-			Middleware:  []negroni.HandlerFunc{httphelper.MWUserInfoHeader},
-		},
-		{
-			Name:        "Remove Template",
-			Method:      "DELETE",
-			Pattern:     TemplatePath + "/{id}",
-			HandlerFunc: api.DeleteTemplate,
+			HandlerFunc: api.CopyRepo,
 			Middleware:  []negroni.HandlerFunc{httphelper.MWUserInfoHeader},
 		},
 	})

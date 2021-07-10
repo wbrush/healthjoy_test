@@ -12,8 +12,6 @@ build:
 	$(GOBUILD) -ldflags $(LD_FLAGS)
 unit:
 	$(GOTEST) -tags=unit -v ./...
-integration:
-	$(GOTEST) -tags=integration -v ./...
 cover:
 	$(GOTEST) -tags=unit -coverprofile $(COVERPROFILE) ./...
 	rm -f $(COVERPROFILE)
@@ -24,7 +22,3 @@ run: build
 	./$(BINARY_NAME)
 deps:
 	$(GOGET)
-
-mockgen:
-	#TODO add all packages and interfaces that need to be mocked
-	mockgen -destination ./dao/mock_dao/main.go bitbucket.org/optiisolutions/go-template-service/dao DataAccessObject

@@ -1,1 +1,0 @@
-DROP TABLE shard_info;

@@ -43,7 +43,7 @@ type JsonValues struct {
 //       type: object
 //       $ref: "#/definitions/BasicInfoStruct"
 func (api *API) HandleInfo(w http.ResponseWriter, r *http.Request) {
-	logrus.Tracef("HandleInfo called")
+	logrus.Debugf("HandleInfo called")
 
 	var memstat runtime.MemStats
 	var retValues JsonValues
@@ -62,25 +62,12 @@ func (api *API) HandleInfo(w http.ResponseWriter, r *http.Request) {
 	retValues.Used_stack = memstat.StackInuse / 1024
 	retValues.Stack_max = memstat.StackSys / 1024
 
-	//msg := []string{
-	//	fmt.Sprintf("Info Command\n"),
-	//	fmt.Sprintf("pii-info-mgr\n"),
-	//	fmt.Sprintf("Version: %s; Built on: %s\n", retValues.Version, retValues.BuiltOn),
-	//	fmt.Sprintf("Copyright %d Optii\n", time.Now().Year()),
-	//	fmt.Sprintf("\n"),
-	//	fmt.Sprintf("Service Info\n"),
-	//	fmt.Sprintf("    # CPUs:       %d\n", retValues.Cpus),
-	//	fmt.Sprintf("    # GoRoutines: %d\n", retValues.Num_go_routines),
-	//	fmt.Sprintf("    # cGo Calls:  %d\n", retValues.Num_cgo_calls),
-	//	fmt.Sprintf("Memory Info\n"),
-	//	fmt.Sprintf("    Total Heap Allocated(KB):         %d\n", retValues.Alloc_heap_total),
-	//	fmt.Sprintf("    Total Allocated from System(KB):  %d\n", retValues.Alloc_system_total),
-	//	fmt.Sprintf("    Estimated Max Allocated Heap(KB): %d\n", retValues.Est_max_heap),
-	//	fmt.Sprintf("    Stack In Use(KB):                 %d\n", retValues.Used_stack),
-	//	fmt.Sprintf("    Stack Memory(KB):                 %d\n", retValues.Stack_max),
-	//}
-
-	httphelper.Json(w, retValues)
+	w.WriteHeader(http.StatusOk)
+	jsonResp, err := json.Marshal(retValues)
+	if err != nil {
+		logrus.Fatalf("Error happened in JSON marshal. Err: %s", err)
+	}
+	w.Write(jsonResp)
 	return
 }
 
@@ -100,8 +87,8 @@ func (api *API) HandleInfo(w http.ResponseWriter, r *http.Request) {
 //   '200':
 //     description: "OK; returns empty page or json structure"
 func (api *API) HandlePing(w http.ResponseWriter, r *http.Request) {
-	logrus.Tracef("HandlePing called")
+	logrus.Debugf("HandlePing called")
 
-	httphelper.Json(w, map[string]interface{}{})
+	w.WriteHeader(http.StatusOk)
 	return
 }

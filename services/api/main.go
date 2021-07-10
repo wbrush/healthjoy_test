@@ -32,9 +32,6 @@ type (
 		port        string
 		swaggerPath string
 
-		dao dao.DataAccessObject
-		ps  messaging.PublisherSubscriber
-
 		router *mux.Router
 		server *http.Server
 	}
