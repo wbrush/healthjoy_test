@@ -6,7 +6,7 @@ import (
 )
 
 const (
-	TemplatePath = "/api/v1/copy_repo"
+	TemplatePath = "/copy_repo"
 )
 
 func (api *API) initRoutes(wrapper *negroni.Negroni) {

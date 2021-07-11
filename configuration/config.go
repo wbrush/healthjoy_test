@@ -20,6 +20,8 @@ type (
 var cfg Config
 
 func InitConfig(commit, builtAt string) *Config {
+	ConfigureLogger()
+
 	//  load space .env variables first if available
 	filename := "./files/.env"
 	if _, err := os.Stat(filename); err == nil {

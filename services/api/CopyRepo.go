@@ -1,9 +1,11 @@
 package api
 
 import (
+	"encoding/json"
 	"net/http"
 
 	"github.com/sirupsen/logrus"
+	"github.com/wbrush/healthjoy_test/models"
 )
 
 // swagger:operation POST /api/v1/copy_repo repo CopyFile
@@ -28,45 +30,31 @@ import (
 //       type: object
 //       $ref: "#/definitions/GlobalTemplateStruct"
 func (api *API) CopyRepo(w http.ResponseWriter, r *http.Request) {
-	logrus.Debug("requested CopyRepo")
 
-	// var newTemplate datamodels.Template
-	// decoder := json.NewDecoder(r.Body)
-	// err := decoder.Decode(&newTemplate)
-	// if err != nil {
-	// 	logrus.Warnf("wrong input data provided: %s", err.Error())
-	// 	httphelper.JsonError(w, errorhandler.NewError(errorhandler.ErrBadParam, "body"))
-	// 	return
-	// }
+	var inputData models.InputData
+	decoder := json.NewDecoder(r.Body)
+	err := decoder.Decode(&inputData)
+	if err != nil {
+		logrus.Warnf("wrong input data provided: %s", err.Error())
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
 
-	// err = newTemplate.Validate()
-	// if err != nil {
-	// 	logrus.Warnf("Template data is invalid: %s", err.Error())
-	// 	httphelper.JsonError(w, errorhandler.NewError(errorhandler.ErrBadParam, "body"))
-	// 	return
-	// }
+	logrus.WithFields(logrus.Fields{
+		"source":      inputData.Source,
+		"destination": inputData.Destination,
+	}).Debug("requested CopyRepo")
 
-	// //get shard id
-	// shards, shardsExists := r.Context().Value(httphelper.ShardsCtx).([]int64)
-	// if !shardsExists || len(shards) < 1 {
-	// 	logrus.Errorf("no %s value in request context. Probably middleware was not called?", httphelper.ShardsCtx)
-	// 	httphelper.JsonError(w, errorhandler.NewError(errorhandler.ErrBadRequest, httphelper.ShardsCtx))
-	// 	return
-	// }
+	//  build command - https://stackoverflow.com/questions/44274188/forking-a-github-repo-using-from-the-command-line-with-bash-curl-and-the-githu
+	//curl -u $my_user_name https://api.github.com/repos/$upstream_repo_username/$upstream_repo_name/forks -d ''
 
-	// isDuplicate, err := api.dao.CreateTemplate(shards[0], &newTemplate)
-	// if err != nil {
-	// 	logrus.Errorf("Template creation error: %s", err.Error())
-	// 	httphelper.JsonError(w, errorhandler.NewError(errorhandler.ErrService))
-	// 	return
-	// }
-	// if isDuplicate {
-	// 	logrus.Errorf("Template already exist: %d", newTemplate.Id)
-	// 	httphelper.JsonError(w, errorhandler.NewError(errorhandler.ErrAlreadyExists, strconv.FormatInt(newTemplate.Id, 10)))
-	// 	return
-	// }
+	//  perform command
+
+	//  check status
 
 	w.WriteHeader(http.StatusOK)
+	// w.Write([]byte("hello"))
+
 	logrus.Debug("finished CopyFile")
 	return
 }
