@@ -1,6 +1,7 @@
 package api
 
 import (
+	"fmt"
 	"net/http"
 	"strings"
 
@@ -9,6 +10,7 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/negroni"
 	"github.com/wbrush/healthjoy_test/configuration"
+	sw "github.com/wbrush/healthjoy_test/ui-swagger"
 )
 
 const DefaultServicePort = "8080"
@@ -66,12 +68,12 @@ func (api *API) Initialize() {
 
 	api.initRoutes(wrapper)
 
-	// // attach the swagger routes
-	// err := sw.AttachSwaggerUI(api.router,
-	// 	fmt.Sprintf("%s/", configuration.APIBasePath), api.swaggerPath)
-	// if err != nil {
-	// 	logrus.Errorf("error attaching the swagger UI: %s ", err.Error())
-	// }
+	// attach the swagger routes
+	err := sw.AttachSwaggerUI(api.router,
+		fmt.Sprintf("%s/", configuration.APIBasePath), api.swaggerPath)
+	if err != nil {
+		logrus.Errorf("error attaching the swagger UI: %s ", err.Error())
+	}
 }
 
 func (api *API) StartServe() {
