@@ -48,19 +48,23 @@ The service is mostly functional and runs locally. The following endpoints have 
 This service uses go-modules so the modules are documented in the go.mod file in the mainline. However, key modules are listed here for completeness.
 
 ### Swagger
-Used for compiling the swagger comments into a swagger.json file.
+Framework used for compiling the swagger comments into a swagger.json file.
 
 go get -u github.com/go-swagger/go-swagger/cmd/swagger
 
 ### Gorilla
+Framework used for handling the REST endpoints and server functions.
+
 go get -u github.com/gorilla/mux
 go get -u github.com/gorilla/handlers
 
 ### logrus
+Framework for logging.
+
 go get -u github.com/sirupsen/logrus
 
 # Deployment
-Need to document (and/or update) our deployment process here
+Need to document (and/or update) the deployment process here
 
 ## Process
 This would spell out the deployment steps once developed and tested.
@@ -68,11 +72,11 @@ This would spell out the deployment steps once developed and tested.
 ## Running locally
 To run this locally, you would need to have the go compiler installed. I can add the windows executable to the repo if needed. To run locally:
 1. run the command "go get github.com/wbrush/healthjoy_test" from the command line
-2a. if on unix, run " go build -ldflags "-X main.commit=`git rev-parse --short HEAD` -X main.builtAt=`date +%FT%T%z`" "
-2b. if on windows, run "go build"
-3a. if on unix, run "./healthjoy_test" 
-3b. if on windows, run "healthjoy_test.exe"
-4. you should see startup messages similar to:
+2. if on unix, run " go build -ldflags "-X main.commit=`git rev-parse --short HEAD` -X main.builtAt=`date +%FT%T%z`" "
+3. if on windows, run "go build"
+4. if on unix, run "./healthjoy_test" 
+5. if on windows, run "healthjoy_test.exe"
+6. you should see startup messages similar to:
 
 time="2021-07-11 19:32:30.811276" level=debug msg="loading environmental variables"
 time="2021-07-11 19:32:30.812310" level=warning msg="HOST env variable not found. Using Default!"
@@ -82,4 +86,4 @@ time="2021-07-11 19:32:30.812310" level=info msg="Version:; Build Date:"
 time="2021-07-11 19:32:30.812310" level=info msg=------------------------------
 time="2021-07-11 19:32:30.815068" level=info msg="Starting REST Server on port 8000..."
 
-5. The API docemented above should be available at "localhost:8000"
+7. The API docemented above should be available at "localhost:8000"
