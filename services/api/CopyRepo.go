@@ -46,7 +46,7 @@ func (api *API) CopyRepo(w http.ResponseWriter, r *http.Request) {
 	}).Debug("requested CopyRepo")
 
 	//  build command - https://stackoverflow.com/questions/44274188/forking-a-github-repo-using-from-the-command-line-with-bash-curl-and-the-githu
-	//curl -u $my_user_name https://api.github.com/repos/$upstream_repo_username/$upstream_repo_name/forks -d ''
+	//curl -u 'my_user_name' https://api.github.com/repos/$upstream_repo_username/$upstream_repo_name/forks -d ''
 
 	//  perform command
 

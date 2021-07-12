@@ -8,8 +8,7 @@
     "application/json"
   ],
   "schemes": [
-    "http",
-    "https"
+    "http"
   ],
   "swagger": "2.0",
   "info": {
@@ -18,9 +17,44 @@
     "termsOfService": "there are no TOS at this moment, use at your own risk we take no responsibility",
     "version": "0.0.1"
   },
-  "host": "localhost",
   "basePath": "/api",
   "paths": {
+    "/api/v1/copy_repo": {
+      "post": {
+        "description": "returns new Template",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "repo"
+        ],
+        "summary": "Create new Template",
+        "operationId": "CopyFile",
+        "parameters": [
+          {
+            "description": "Template object that needs to be added",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GlobalTemplateStruct"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/GlobalTemplateStruct"
+            }
+          }
+        }
+      }
+    },
     "/info": {
       "get": {
         "description": "returns memory stats, cpu stats, and other information useful in debugging problems in deployed service.",
@@ -79,92 +113,6 @@
           }
         }
       }
-    },
-    "/template": {
-      "get": {
-        "tags": [
-          "entries"
-        ],
-        "operationId": "listTemplates"
-      },
-      "post": {
-        "description": "returns new Template",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "entries"
-        ],
-        "summary": "Create new Template",
-        "operationId": "createTemplate",
-        "parameters": [
-          {
-            "description": "Template object that needs to be added",
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/GlobalTemplateStruct"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "$ref": "#/definitions/GlobalTemplateStruct"
-            }
-          }
-        }
-      }
-    },
-    "/template/{id}": {
-      "get": {
-        "description": "returns Template",
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "entries"
-        ],
-        "summary": "Get Template by given id",
-        "operationId": "getTemplate",
-        "parameters": [
-          {
-            "type": "number",
-            "description": "Numeric ID of the Template to get",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "$ref": "#/definitions/GlobalTemplateStruct"
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "entries"
-        ],
-        "operationId": "updateTemplate"
-      },
-      "delete": {
-        "description": "Numeric ID of the Template to delete",
-        "tags": [
-          "entries"
-        ],
-        "operationId": "deleteTemplate"
-      }
     }
   },
   "definitions": {
@@ -221,16 +169,16 @@
         }
       },
       "x-go-name": "JsonValues",
-      "x-go-package": "bitbucket.org/optiisolutions/go-template-service/services/api"
+      "x-go-package": "github.com/wbrush/healthjoy_test/services/api"
     }
   },
   "securityDefinitions": {
-    "optii_apikey": {
+    "wbrush_apikey": {
       "type": "apiKey",
       "name": "KEY",
       "in": "header"
     },
-    "optii_oauth2": {
+    "wbrush_oauth2": {
       "description": "example",
       "type": "oauth2",
       "flow": "accessCode",
@@ -244,10 +192,10 @@
   },
   "security": [
     {
-      "optii_apikey": []
+      "wbrush_apikey": []
     },
     {
-      "optii_oauth2": []
+      "wbrush_oauth2": []
     }
   ]
 }

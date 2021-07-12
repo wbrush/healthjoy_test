@@ -9,7 +9,7 @@
 //
 // there are no TOS at this moment, use at your own risk we take no responsibility
 //
-//     Schemes: https
+//     Schemes: http
 //     BasePath: /api
 //     Version: 0.0.1
 //
